@@ -6,11 +6,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.techvalley.sdp.data.XmlData;
-
 public class Sdp1883Sender {
-	
-	XmlData xmlData = new XmlData();
 	
  	public void SmsSender(String spId, String spPassword,String serviceId, String timeStamp, String linkid, String addresses, String senderName, String message, String correlator) {
 		
@@ -19,17 +15,16 @@ public class Sdp1883Sender {
 		String SmsXMLDoc = smsXMLObject(spId, spPassword, serviceId, timeStamp, linkid, addresses, senderName, message, correlator );
 				
 		try {
-			urlObject = new URL("http://localhost:1780/sdp/sdpeightythreedatasync");
-			//urlObject = new URL("http://196.201.33.108:8310/SendSmsService/services/SendSms");
+			urlObject = new URL("http://196.201.33.108:8310/SendSmsService/services/SendSms");
 			HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
 			con.setDoInput(true);
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content-Type", "text/xml");
-			con.addRequestProperty("Content-Length", "" + xmlData.dataSyncXml().getBytes().length);
+			con.addRequestProperty("Content-Length", "" + SmsXMLDoc.getBytes().length);
 	       
 			con.setDoOutput(true);
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-			wr.writeBytes(xmlData.dataSyncXml());
+			wr.writeBytes(SmsXMLDoc);
 			wr.flush();
 			wr.close();
 			

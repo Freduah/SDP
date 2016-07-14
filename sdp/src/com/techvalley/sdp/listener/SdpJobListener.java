@@ -134,19 +134,19 @@ public class SdpJobListener implements ServletContextListener {
 
             // Setup the Job and Trigger with Scheduler & schedule jobs
             scheduler = new StdSchedulerFactory().getScheduler();
-            scheduler.start();
-            scheduler.scheduleJob(DataSyncJob, DataSyncTrigger);
+            scheduler.start();           
             scheduler.scheduleJob(Sdp1880SenderJob, Sdp1880JobTrigger);
             scheduler.scheduleJob(Sdp1881SenderJob, Sdp1881JobTrigger);
             scheduler.scheduleJob(Sdp1882SenderJob, Sdp1882JobTrigger);
             scheduler.scheduleJob(Sdp1883SenderJob, Sdp1883JobTrigger);
-            scheduler.scheduleJob(Sdp1884SenderJob, Sdp1884JobTrigger);
             scheduler.scheduleJob(Sdp1885SenderJob, Sdp1885JobTrigger);
+            scheduler.scheduleJob(SDPHelpSenderJob, SdpHelpJobTrigger);
             
+           // scheduler.scheduleJob(Sdp1884SenderJob, Sdp1884JobTrigger); 
            // scheduler.scheduleJob(SdpSubscriptionSenderJob, SdpSubscriptionJobTrigger);
            // scheduler.scheduleJob(SDPUnsubscriptionSenderJob, SdpUnsubscriptionJobTrigger); 
+           // scheduler.scheduleJob(DataSyncJob, DataSyncTrigger); 
             
-            scheduler.scheduleJob(SDPHelpSenderJob, SdpHelpJobTrigger);
             
             
     }

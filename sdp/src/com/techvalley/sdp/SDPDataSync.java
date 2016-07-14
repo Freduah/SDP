@@ -15,16 +15,11 @@ import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import com.techvalley.sdp.data.SDPDataSyncSQL;
-import com.techvalley.sdp.data.SDPMORequestSQL;
-
 
 @WebServlet("/sdpdatasync")
 public class SDPDataSync extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	SDPDataSyncSQL sdpDataSyncSQL = new SDPDataSyncSQL();
-	SDPMORequestSQL sdpMORequestSQL = new SDPMORequestSQL();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/xml; charset=UTF-8");
@@ -71,36 +66,7 @@ public class SDPDataSync extends HttpServlet {
 			  String correlator = transactionID;
 			  String smsServiceActivationNumber = operatorID;
 			  
-			  
-			   sdpDataSyncSQL.SDPDataSyncSQLObject( msisdn, spID, productID, serviceID, serviceList, updateType, updateTime, 
-					   updateDesc, effectiveTime, expiryTime, Starttime, keyWord, cycleEndTime, operatorID, transactionID, 
-					   orderKey, channelID, TraceUniqueID );
-			   
-			   /*
-			   sdpDataSyncSQL.SDP1880DataSyncSQLObject( msisdn, spID, productID, serviceID, serviceList, updateType, updateTime, 
-					   updateDesc, effectiveTime, expiryTime, Starttime, keyWord, cycleEndTime, operatorID, transactionID, 
-					   orderKey, channelID, TraceUniqueID );
-			   
-			   sdpDataSyncSQL.SDP1881DataSyncSQLObject( msisdn, spID, productID, serviceID, serviceList, updateType, updateTime, 
-					   updateDesc, effectiveTime, expiryTime, Starttime, keyWord, cycleEndTime, operatorID, transactionID, 
-					   orderKey, channelID, TraceUniqueID );
-			   
-			   sdpDataSyncSQL.SDP1882DataSyncSQLObject( msisdn, spID, productID, serviceID, serviceList, updateType, updateTime, 
-					   updateDesc, effectiveTime, expiryTime, Starttime, keyWord, cycleEndTime, operatorID, transactionID, 
-					   orderKey, channelID, TraceUniqueID );
-			   
-			   sdpDataSyncSQL.SDP1883DataSyncSQLObject( msisdn, spID, productID, serviceID, serviceList, updateType, updateTime, 
-					   updateDesc, effectiveTime, expiryTime, Starttime, keyWord, cycleEndTime, operatorID, transactionID, 
-					   orderKey, channelID, TraceUniqueID );
-			   
-			   sdpDataSyncSQL.SDP1884DataSyncSQLObject( msisdn, spID, productID, serviceID, serviceList, updateType, updateTime, 
-					   updateDesc, effectiveTime, expiryTime, Starttime, keyWord, cycleEndTime, operatorID, transactionID, 
-					   orderKey, channelID, TraceUniqueID );
-			   
-			   sdpDataSyncSQL.SDP1885DataSyncSQLObject( msisdn, spID, productID, serviceID, serviceList, updateType, updateTime, 
-					   updateDesc, effectiveTime, expiryTime, Starttime, keyWord, cycleEndTime, operatorID, transactionID, 
-					   orderKey, channelID, TraceUniqueID );
-			   */
+			 
 			  
 			  System.out.println("-------SDP DataSync Information---------");
 			  System.out.println("DataSync Details : " + msisdn + " " +  spID + " " + productID + " " + serviceID + " " + serviceList 

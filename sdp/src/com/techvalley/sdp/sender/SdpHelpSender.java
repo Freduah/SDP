@@ -15,8 +15,7 @@ public class SdpHelpSender {
 		String SmsXMLDoc = smsXMLObject(spId, spPassword, serviceId, timeStamp, linkid, addresses, senderName, message, correlator );
 		
 		try {
-			urlObject = new URL("http://localhost:1780/sdp/sdpdatasync");
-			//urlObject = new URL("http://196.201.33.108:8310/SendSmsService/services/SendSms");
+			urlObject = new URL("http://196.201.33.108:8310/SendSmsService/services/SendSms");
 			HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
 			con.setDoInput(true);
 			con.setRequestMethod("POST");
