@@ -26,14 +26,17 @@ public class Sdp1883Job implements Job {
 			
 			SDP1883SenderCallableStatement = sdp1883Connection.SDP1883DBConnection().prepareCall(SDP1883SmsSender);	
 			SDP1883SenderResult = SDP1883SenderCallableStatement.executeQuery();
-            while(SDP1883SenderResult.next()) {
+            
+			while(SDP1883SenderResult.next()) {
             	
             	sdp1883Sender.SmsSender(SDP1883SenderResult.getString("spId"), SDP1883SenderResult.getString("spPassword"), 
             			SDP1883SenderResult.getString("serviceId"), SDP1883SenderResult.getString("timeStamp"), SDP1883SenderResult.getString("linkid"), 
             			SDP1883SenderResult.getString("msisdn"), SDP1883SenderResult.getString("shortCode"), SDP1883SenderResult.getString("message"), 
             			SDP1883SenderResult.getString("correlator"));
-            	//sdp1883Sender.SmsSender(spId, spPassword, serviceId, timeStamp, linkid, addresses, senderName, message, correlator);
+            	
             }
+			
+			SDP1883SenderResult.close();
 			
 		}
 		catch(Exception ex){
@@ -41,9 +44,7 @@ public class Sdp1883Job implements Job {
 		}
 		finally{
 			cleanConnection();
-		}
-		
-		//System.out.print("SDP 1883 Job is running here ...\n");		
+		}	
 	}	
 	
 	
@@ -58,6 +59,10 @@ public class Sdp1883Job implements Job {
 	         if (SDP1883SenderCallableStatement != null){
 	        	 SDP1883SenderCallableStatement.close();
 	        }
+	        
+	         if(SDP1883SenderResult != null){
+	        	 SDP1883SenderResult.close();
+	         }
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}

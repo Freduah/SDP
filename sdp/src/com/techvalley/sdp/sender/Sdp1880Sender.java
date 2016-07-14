@@ -19,20 +19,18 @@ public class Sdp1880Sender {
 		URL urlObject;
 		String SmsXMLDoc = smsXMLObject(spId, spPassword, serviceId, timeStamp, linkid, addresses, senderName, message, correlator );
 		
-		String moTestXmlData = xmlData.motestXML();
-		
 		try {
-			//urlObject = new URL("http://196.201.33.98:8310/SendSmsService/services/SendSms");
-			urlObject = new URL("http://localhost:1780/sdp/sdpmoequest");
+			urlObject = new URL("http://localhost:1780/sdp/sdpeightydatasync");
+			//urlObject = new URL("http://196.201.33.108:8310/SendSmsService/services/SendSms");
 			HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
 			con.setDoInput(true);
 			con.setRequestMethod("POST");
 			con.setRequestProperty("Content-Type", "text/xml");
-			con.addRequestProperty("Content-Length", "" + moTestXmlData.getBytes().length);
+			con.addRequestProperty("Content-Length", "" + xmlData.dataSyncXml().getBytes().length);
 	       
 			con.setDoOutput(true);
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-			wr.writeBytes(moTestXmlData);
+			wr.writeBytes(xmlData.dataSyncXml());
 			wr.flush();
 			wr.close();
 			
@@ -43,7 +41,7 @@ public class Sdp1880Sender {
                 BufferedReader in = new BufferedReader(
                     new InputStreamReader(con.getInputStream()));
 
-                System.out.println("Submission result MO: " + in.readLine());
+                System.out.println("Submission Result MO: " + in.readLine());
                 in.close();
             }
 	            
@@ -77,7 +75,7 @@ public class Sdp1880Sender {
             .append("     <loc:senderName>").append(senderName).append("</loc:senderName>")
             .append("     <loc:message>").append(message).append("</loc:message>")
             .append("     <loc:receiptRequest>")
-            .append("     <endpoint>http://45.58.43.180:1780/sdp/sdpdeliveryreceipt</endpoint>")
+            .append("     <endpoint>http://45.58.43.180:1780/sdp/sdpeightydeliveryreceipt</endpoint>")
             .append("     <interfaceName>SmsNotification</interfaceName>")
             .append("     <correlator>").append(correlator).append("</correlator>")
             .append("     </loc:receiptRequest>")

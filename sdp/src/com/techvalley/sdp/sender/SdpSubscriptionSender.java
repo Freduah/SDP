@@ -16,8 +16,7 @@ public class SdpSubscriptionSender {
 		String SmsXMLDoc = subscribeXML(spId, password, timeStamp, msisdn, productId, isAutoExtend, channelId);
 		
 		try {
-			//urlObject = new URL("http://196.201.33.98:8310/SubscribeManageService/services/SubscribeManage");
-			urlObject = new URL("http://localhost:1780/sdp/sdpdeliveryreceipt");
+			urlObject = new URL("http://196.201.33.108:8310/SubscribeManageService/services/SubscribeManage");
 			HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
 			con.setDoInput(true);
 			con.setRequestMethod("POST");

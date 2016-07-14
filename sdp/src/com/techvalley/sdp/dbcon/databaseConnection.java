@@ -15,5 +15,21 @@ public class databaseConnection {
        
         return ds.getConnection();
 	}
+	
+public Connection sdpSubDBConnection() throws Exception{
+		
+		Context initCtx = new InitialContext();
+        DataSource ds = (DataSource) initCtx.lookup("java:/comp/env/jdbc/MtnDB");
+       
+        return ds.getConnection();
+	}
+	
+	public Connection sdpUnsubDBConnection() throws Exception{
+		
+		Context initCtx = new InitialContext();
+        DataSource ds = (DataSource) initCtx.lookup("java:/comp/env/jdbc/MtnDB");
+       
+        return ds.getConnection();
+	}
 
 }

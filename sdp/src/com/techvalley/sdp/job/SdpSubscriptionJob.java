@@ -24,7 +24,7 @@ public class SdpSubscriptionJob implements Job {
 		
 		try{
 			
-			SDPSubscribeSenderCallableStatement = databaseConn.mtnDBConnection().prepareCall(SDPSubscribeSmsSender);
+			SDPSubscribeSenderCallableStatement = databaseConn.sdpSubDBConnection().prepareCall(SDPSubscribeSmsSender);
 			SDPSubscribeSenderResult = SDPSubscribeSenderCallableStatement.executeQuery();
 			
 			while(SDPSubscribeSenderResult.next()) {				
@@ -33,12 +33,38 @@ public class SdpSubscriptionJob implements Job {
 						SDPSubscribeSenderResult.getString("productId"), Boolean.parseBoolean(SDPSubscribeSenderResult.getString("isAutoExtend")), 
 						SDPSubscribeSenderResult.getString("channelId"));
 				// SELECT `Id`, `spId`, `password`, `timeStamp`, `msisdn`, `productId`, `isAutoExtend`, `channelId` FROM `tbl_subscription` WHERE isSent = 0 LIMIT 3;
-			}			
+			}	
+			
+			SDPSubscribeSenderResult.close();
 			
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
+		finally{
+			cleanConnection();
+		}
 		
 	}
+	
+	
+	private void cleanConnection() {
+
+		try{
+		
+	        if (databaseConn.sdpSubDBConnection() != null) {
+	        	databaseConn.sdpSubDBConnection().close();
+	        }
+	
+	         if (SDPSubscribeSenderCallableStatement != null){
+	        	 SDPSubscribeSenderCallableStatement.close();
+	        }
+	         
+	         if(SDPSubscribeSenderResult != null){
+	        	 SDPSubscribeSenderResult.close();
+	         }
+		} catch(Exception ex){
+			ex.printStackTrace();
+		}
+    }
 
 }

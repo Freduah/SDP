@@ -23,12 +23,12 @@ import com.techvalley.sdp.data.SDPSmsResponse;
 public class SDPMORequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	SDPSmsResponse sdpSmsResponse = new SDPSmsResponse();
-	
+	SDPSmsResponse sdpSmsResponse = new SDPSmsResponse();	
 	SDPMORequestSQL sdpMORequestSQL = new SDPMORequestSQL();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setContentType("text/xml; charset=UTF-8");
+		response.getWriter().print(sdpSmsResponse.moResponseXML());
 	}
 
 	
@@ -55,7 +55,7 @@ public class SDPMORequest extends HttpServlet {
 			  String eventDateTime = rootElement.getElementsByTagName("dateTime").item(0).getTextContent();
 			  
 			  			  
-			  sdpMORequestSQL.SDPMORequestSQLObject(spId, serviceId, linkid, traceUniqueID, OperatorID, correlator, message, msisdn, smsServiceActivationNumber, eventDateTime);
+			  //sdpMORequestSQL.SDPMORequestSQLObject(spId, serviceId, linkid, traceUniqueID, OperatorID, correlator, message, msisdn, smsServiceActivationNumber, eventDateTime);
 			  
 			  System.out.println("-------SDP MO Request Information---------");
 			  System.out.println("MO Details :" + spId + " " + serviceId + " " + linkid + " " + traceUniqueID
@@ -78,9 +78,7 @@ public class SDPMORequest extends HttpServlet {
 		}  finally {			
 			
 			
-		}
-
-		
+		}	
 		
 	}
 

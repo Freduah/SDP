@@ -32,18 +32,16 @@ public class Sdp1881Job implements Job {
             			SDP1881SenderResult.getString("serviceId"), SDP1881SenderResult.getString("timeStamp"), SDP1881SenderResult.getString("linkid"), 
             			SDP1881SenderResult.getString("msisdn"), SDP1881SenderResult.getString("shortCode"), SDP1881SenderResult.getString("message"), 
             			SDP1881SenderResult.getString("correlator"));
-            	//sdp1881Sender.SmsSender(spId, spPassword, serviceId, timeStamp, linkid, addresses, senderName, message, correlator);
             }
-			
+            
+            SDP1881SenderResult.close();
 		}
 		catch(Exception ex){
 			ex.printStackTrace();
 		}
 		finally{
 			cleanConnection();
-		}
-		
-		//System.out.print("SDP 1881 Job is running here ...\n");		
+		}	
 	}	
 	
 	
@@ -58,6 +56,10 @@ public class Sdp1881Job implements Job {
 	         if (SDP1881SenderCallableStatement != null){
 	        	 SDP1881SenderCallableStatement.close();
 	        }
+	         
+	         if(SDP1881SenderResult != null){
+	        	 SDP1881SenderResult.close();
+	         }
 		} catch(Exception ex){
 			ex.printStackTrace();
 		}
