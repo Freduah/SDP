@@ -28,9 +28,9 @@
           org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReportJmx(threshold=10000)"
         abandonWhenPercentageFull="75"
         
-        username="root"
-        password="back4gud"
+        username=""
+        password=""
         driverClassName="com.mysql.jdbc.Driver"
-        url="jdbc:mysql://localhost:3306/MtnDB?autoReconnect=true"/>
+        url="jdbc:mysql://localhost:3306/testDB?autoReconnect=true"/>
                   
 </Context>
