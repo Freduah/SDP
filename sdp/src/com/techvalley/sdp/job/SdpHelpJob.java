@@ -33,6 +33,10 @@ public class SdpHelpJob implements Job {
             			SDPHelpSenderResult.getString("serviceId"), SDPHelpSenderResult.getString("timeStamp"), SDPHelpSenderResult.getString("linkid"), 
             			SDPHelpSenderResult.getString("msisdn"), SDPHelpSenderResult.getString("shortCode"), SDPHelpSenderResult.getString("message"), 
             			SDPHelpSenderResult.getString("correlator"));
+            	
+            	System.out.print("Sending Help Messages" + SDPHelpSenderResult.getString("msisdn") + " "
+            			+ SDPHelpSenderResult.getString("shortCode") + " " 
+            			+ SDPHelpSenderResult.getString("message") + " End \n");
 
 		   }  
 			

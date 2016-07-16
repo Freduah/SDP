@@ -29,7 +29,7 @@ public class SDP1880DataSync extends HttpServlet {
 	SDPMORequestSQL sdpMORequestSQL = new SDPMORequestSQL();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	}
 
 	
@@ -55,15 +55,14 @@ public class SDP1880DataSync extends HttpServlet {
 			  String effectiveTime = rootElement.getElementsByTagName("ns1:effectiveTime").item(0).getTextContent(); 
 			  String expiryTime = rootElement.getElementsByTagName("ns1:expiryTime").item(0).getTextContent(); 
 			  
-			  String Starttime = rootElement.getElementsByTagName("value").item(0).getTextContent();
-			  String keyWord = rootElement.getElementsByTagName("value").item(5).getTextContent();
-			  String cycleEndTime = rootElement.getElementsByTagName("value").item(6).getTextContent();
-			  String operatorID = rootElement.getElementsByTagName("value").item(8).getTextContent();
-			  String transactionID = rootElement.getElementsByTagName("value").item(10).getTextContent();
-			  String orderKey = rootElement.getElementsByTagName("value").item(11).getTextContent();
-			  String channelID = rootElement.getElementsByTagName("value").item(12).getTextContent();
-			  
-			  String TraceUniqueID = rootElement.getElementsByTagName("value").item(13).getTextContent();
+			  String Starttime = rootElement.getElementsByTagName("value").item(16).getTextContent();
+			  String keyWord = rootElement.getElementsByTagName("value").item(13).getTextContent();
+			  String cycleEndTime = rootElement.getElementsByTagName("value").item(15).getTextContent();
+			  String operatorID = rootElement.getElementsByTagName("value").item(3).getTextContent();
+			  String transactionID = rootElement.getElementsByTagName("value").item(5).getTextContent();
+			  String orderKey = rootElement.getElementsByTagName("value").item(6).getTextContent();
+			  String channelID = rootElement.getElementsByTagName("value").item(17).getTextContent();			  
+			  String TraceUniqueID = rootElement.getElementsByTagName("value").item(19).getTextContent();
 			  
 			  
 			  // Subscribtion information
@@ -73,19 +72,18 @@ public class SDP1880DataSync extends HttpServlet {
 			  String correlator = transactionID;
 			  String smsServiceActivationNumber = operatorID;
 			  
-			  			   
+			  		  			   
 			   sdpDataSyncSQL.SDP1880DataSyncSQLObject( msisdn, spID, productID, serviceID, serviceList, updateType, updateTime, 
 					   updateDesc, effectiveTime, expiryTime, Starttime, keyWord, cycleEndTime, operatorID, transactionID, 
 					   orderKey, channelID, TraceUniqueID ); 
 			  
-			  System.out.println("-------SDP 1880 DataSync Information---------");
+			  System.out.println("-------SDP 1880 DataSync Information---------");			  
 			  System.out.println("DataSync Details : " + msisdn + " " +  spID + " " + productID + " " + serviceID + " " + serviceList 
 					  + " " + updateType + " " + updateTime + " " + updateDesc + " " + effectiveTime + " " + expiryTime + " " 
 					  + TraceUniqueID + " End Of DataSync Details");
 			  
-			  System.out.println("User info :" + message + " " + eventDateTime + " " + linkid + " " + correlator 
-					  + " " + smsServiceActivationNumber + " End of User info.");
-			  
+			  System.out.println("User info :" + message + " " + eventDateTime + " " + linkid + " " + correlator + " " + Starttime
+					  + " " + cycleEndTime + " " + smsServiceActivationNumber + " " + orderKey + " " + channelID + " End of User info."); 
 			  System.out.println("-------END 1880 DataSync Information---------");
 			  
 			 

@@ -32,6 +32,10 @@ public class Sdp1882Job implements Job {
             			SDP1882SenderResult.getString("serviceId"), SDP1882SenderResult.getString("timeStamp"), SDP1882SenderResult.getString("linkid"), 
             			SDP1882SenderResult.getString("msisdn"), SDP1882SenderResult.getString("shortCode"), SDP1882SenderResult.getString("message"), 
             			SDP1882SenderResult.getString("correlator"));
+            	
+            	System.out.print("Sending 1882 Messages" + SDP1882SenderResult.getString("msisdn") + " "
+            			+ SDP1882SenderResult.getString("shortCode") + " " 
+            			+ SDP1882SenderResult.getString("message") + " End \n");
             }
             
             SDP1882SenderResult.close();

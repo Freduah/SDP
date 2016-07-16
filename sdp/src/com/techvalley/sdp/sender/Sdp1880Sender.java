@@ -21,7 +21,7 @@ public class Sdp1880Sender {
 			HttpURLConnection con = (HttpURLConnection) urlObject.openConnection();
 			con.setDoInput(true);
 			con.setRequestMethod("POST");
-			con.setRequestProperty("Content-Type", "text/xml");
+			con.setRequestProperty("Content-Type", "text/xml; charset=UTF-8");
 			con.addRequestProperty("Content-Length", "" + SmsXMLDoc.getBytes().length);
 	       
 			con.setDoOutput(true);
@@ -61,7 +61,6 @@ public class Sdp1880Sender {
             .append("      <v2:timeStamp>").append(timeStamp).append("</v2:timeStamp>")
             .append("      <v2:OA>").append(addresses).append("</v2:OA>")
             .append("      <v2:FA>").append(addresses).append("</v2:FA>")
-            .append("      <v2:linkid>").append(linkid).append("</v2:linkid>")
             .append("      <v2:presentid/>")
             .append("    </v2:RequestSOAPHeader>")
             .append(" </soapenv:Header>")

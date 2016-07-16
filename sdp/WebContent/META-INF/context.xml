@@ -4,35 +4,33 @@
     <!-- Default set of monitored resources -->
     <WatchedResource>WEB-INF/web.xml</WatchedResource>
    
-       <Resource name="jdbc/MtnDB"
-          auth="Container"
-          type="javax.sql.DataSource"
-          factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
-          testWhileIdle="false"
-          testOnBorrow="false"
-          testOnReturn="false"
-          validationQuery="SELECT 1"
-          validationInterval="30"
-          maxActive="500"
-          minIdle="20"
-          maxIdle="50"
-          maxWait="10000"
-          initialSize="10"
-          removeAbandonedTimeout="60"
-          removeAbandoned="true"
-          logAbandoned="true"
-          timeBetweenEvictionRunsMillis="30000"
-          minEvictableIdleTimeMillis="60000"
-          jmxEnabled="true"
-          suspectTimeout="60"
-          abandonWhenPercentageFull="75"
-          jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;
-            org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer;
-            org.apache.tomcat.jdbc.pool.interceptor.ResetAbandonedTimer;
-            org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReportJmx(threshold=10000)"
-          username="root"
-          password="back4gud"
-          driverClassName="com.mysql.jdbc.Driver"
-          url="jdbc:mysql://localhost:3306/MtnDB?autoReconnect=true"/>
-                   
+      <Resource name="jdbc/MtnDB"
+        auth="Container"
+        type="javax.sql.DataSource"
+        factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+        validationQuery="SELECT 1"
+        validationInterval="30000"
+       
+        initialSize="10"        
+        maxActive="10000" 
+        minIdle="10" 
+        maxWait="20000" 
+
+        removeAbandonedTimeout="120"
+		removeAbandoned="true"
+        timeBetweenEvictionRunsMillis="60000"   
+        minEvictableIdleTimeMillis="60000"   
+        jmxEnabled="true"
+        
+        closeMethod="close"                    
+        jdbcInterceptors="org.apache.tomcat.jdbc.pool.interceptor.ConnectionState;
+          org.apache.tomcat.jdbc.pool.interceptor.StatementFinalizer;
+          org.apache.tomcat.jdbc.pool.interceptor.SlowQueryReportJmx(threshold=10000)"
+        abandonWhenPercentageFull="75"
+        
+        username="root"
+        password="back4gud"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://localhost:3306/MtnDB?autoReconnect=true"/>
+                  
 </Context>
